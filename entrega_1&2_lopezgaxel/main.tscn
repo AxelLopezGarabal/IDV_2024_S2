@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bredsbdmat4jr"]
+
+[ext_resource type="PackedScene" uid="uid://lbjv0daetqgc" path="res://player.tscn" id="1_ctkeo"]
+[ext_resource type="Texture2D" uid="uid://bu5k2wh1vtdb" path="res://art/background.png" id="1_smped"]
+[ext_resource type="Texture2D" uid="uid://d1xglsq6e2hu6" path="res://art/floor.png" id="2_fvn12"]
+
+[node name="Main" type="Node"]
+
+[node name="BackColor" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_smped")
+
+[node name="Ground" type="TextureRect" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -66.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_fvn12")
+
+[node name="Player" parent="." instance=ExtResource("1_ctkeo")]
+position = Vector2(571, 550)
