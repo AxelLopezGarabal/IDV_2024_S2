@@ -11,6 +11,8 @@ script/source = "extends Node
 func _ready():
 	$Player.set_bullet_container(self)
 	$Turret.set_values($Player, self)
+	$Turret2.set_values($Player, self)
+	$Turret3.set_values($Player, self)
 "
 
 [node name="Main" type="Node"]
@@ -38,4 +40,10 @@ texture = ExtResource("2_fvn12")
 position = Vector2(571, 550)
 
 [node name="Turret" parent="." instance=ExtResource("4_r3ydv")]
-position = Vector2(560, 44)
+position = Vector2(560, 50)
+
+[node name="Turret2" parent="." instance=ExtResource("4_r3ydv")]
+position = Vector2(25, 50)
+
+[node name="Turret3" parent="." instance=ExtResource("4_r3ydv")]
+position = Vector2(1110, 50)

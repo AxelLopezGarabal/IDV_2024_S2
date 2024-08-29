@@ -14,7 +14,7 @@ func _on_timer_timeout():
 
 func fire():
 	var new_bullet:Projectile = projectile.instantiate()
-	new_bullet.set_starting_values(fire_pos.global_position, (fire_pos.global_position - global_position).normalized())
+	new_bullet.set_starting_values(fire_pos.global_position, (-fire_pos.global_position +player.global_position).normalized())
 	projectile_container.add_child(new_bullet)
 	new_bullet.delete_req.connect(_on_projectile_delete_req)
 	

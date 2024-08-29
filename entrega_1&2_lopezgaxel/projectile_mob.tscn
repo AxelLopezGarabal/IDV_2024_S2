@@ -5,3 +5,6 @@
 
 [node name="Projectile" instance=ExtResource("1_e8ykh")]
 texture = ExtResource("2_7cx4o")
+
+[node name="Timer" parent="." index="0"]
+wait_time = 2.0
