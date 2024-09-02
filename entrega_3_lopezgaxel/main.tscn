@@ -1,3 +1,49 @@
-[gd_scene format=3 uid="uid://bmpd1hjogjojb"]
+[gd_scene load_steps=6 format=3 uid="uid://bredsbdmat4jr"]
 
-[node name="Main" type="Node2D"]
+[ext_resource type="PackedScene" uid="uid://lbjv0daetqgc" path="res://entities/player/player.tscn" id="1_ctkeo"]
+[ext_resource type="Texture2D" uid="uid://bu5k2wh1vtdb" path="res://assets/textures/background.png" id="1_smped"]
+[ext_resource type="Texture2D" uid="uid://d1xglsq6e2hu6" path="res://assets/textures/floor.png" id="2_fvn12"]
+[ext_resource type="PackedScene" uid="uid://dxo4njqjj25rg" path="res://entities/enimies/turret.tscn" id="4_r3ydv"]
+
+[sub_resource type="GDScript" id="GDScript_a5nbh"]
+script/source = "extends Node
+
+func _ready():
+	$Player.set_bullet_container(self)
+	$Turret.set_values($Player, self)
+	$Turret2.set_values($Player, self)
+	$Turret3.set_values($Player, self)
+"
+
+[node name="Main" type="Node"]
+script = SubResource("GDScript_a5nbh")
+
+[node name="BackColor" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_smped")
+
+[node name="Ground" type="TextureRect" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -66.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_fvn12")
+
+[node name="Player" parent="." instance=ExtResource("1_ctkeo")]
+position = Vector2(571, 550)
+
+[node name="Turret" parent="." instance=ExtResource("4_r3ydv")]
+position = Vector2(580, 35)
+
+[node name="Turret2" parent="." instance=ExtResource("4_r3ydv")]
+position = Vector2(1115, 35)
+
+[node name="Turret3" parent="." instance=ExtResource("4_r3ydv")]
+position = Vector2(50, 35)

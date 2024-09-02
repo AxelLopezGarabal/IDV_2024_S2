@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://oa0jhma5bfur"]
+
+[ext_resource type="Script" path="res://entities/abs_projectile.gd" id="1_gxdar"]
+
+[node name="Projectile" type="Sprite2D"]
+script = ExtResource("1_gxdar")
+speed = 150
+metadata/_edit_group_ = true
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
