@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bredsbdmat4jr"]
+[gd_scene load_steps=7 format=3 uid="uid://bredsbdmat4jr"]
 
 [ext_resource type="PackedScene" uid="uid://lbjv0daetqgc" path="res://entities/player/player.tscn" id="1_ctkeo"]
 [ext_resource type="Texture2D" uid="uid://bu5k2wh1vtdb" path="res://assets/textures/background.png" id="1_smped"]
@@ -15,6 +15,9 @@ func _ready():
 	$Turret3.set_values($Player, self)
 "
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fed84"]
+size = Vector2(1149, 66)
+
 [node name="Main" type="Node"]
 script = SubResource("GDScript_a5nbh")
 
@@ -26,18 +29,23 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_smped")
 
-[node name="Ground" type="TextureRect" parent="."]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -66.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(0, 560)
+
+[node name="Sprite" type="Sprite2D" parent="Ground"]
+position = Vector2(576, 55)
+scale = Vector2(17.4545, 1)
 texture = ExtResource("2_fvn12")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(577.5, 55)
+shape = SubResource("RectangleShape2D_fed84")
 
 [node name="Player" parent="." instance=ExtResource("1_ctkeo")]
 position = Vector2(571, 550)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, -225)
 
 [node name="Turret" parent="." instance=ExtResource("4_r3ydv")]
 position = Vector2(580, 35)

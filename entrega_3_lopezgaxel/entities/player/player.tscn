@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://lbjv0daetqgc"]
+[gd_scene load_steps=7 format=3 uid="uid://lbjv0daetqgc"]
 
 [ext_resource type="Texture2D" uid="uid://b6l16jimi6pw" path="res://assets/textures/player.png" id="1_bdyd4"]
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_rehai"]
@@ -6,10 +6,16 @@
 [ext_resource type="Script" path="res://entities/player/cannon.gd" id="4_rxofu"]
 [ext_resource type="PackedScene" uid="uid://c43860d8evx0s" path="res://entities/player/projectile.tscn" id="5_scmfx"]
 
-[node name="Player" type="Sprite2D"]
-texture = ExtResource("1_bdyd4")
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qe8je"]
+radius = 32.0
+height = 64.0
+
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_rehai")
 metadata/_edit_group_ = true
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = ExtResource("1_bdyd4")
 
 [node name="Cannon" type="Sprite2D" parent="."]
 texture = ExtResource("3_2hgie")
@@ -18,3 +24,6 @@ projectile = ExtResource("5_scmfx")
 
 [node name="FirePosition" type="Marker2D" parent="Cannon"]
 position = Vector2(15, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_qe8je")
