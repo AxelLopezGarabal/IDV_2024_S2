@@ -1,12 +1,22 @@
 extends Sprite2D
+
+class_name Turret
 @export var projectile:PackedScene
 var player
 var projectile_container:Node
 @onready var fire_pos:Marker2D = $Position
 
-func _setVal(player, container):
-	self.set_values(player, container)
-	
+#func _setVal(player, container):
+	#self.set_values(player, container)
+
+func initialize(container, turret_pos, player, projectile_container):
+	container.add_child(self)
+	global_position = turret_pos
+	self.player = player
+	self.projectile_container = projectile_container
+	#fire_timer.connect("timeout", self, "fire_at_player")
+	$Timer.start()
+
 func set_values(new_player, container):
 	self.player = new_player
 	self.projectile_container = container

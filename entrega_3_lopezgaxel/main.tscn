@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://lbjv0daetqgc" path="res://entities/player/player.tscn" id="1_ctkeo"]
 [ext_resource type="Texture2D" uid="uid://bu5k2wh1vtdb" path="res://assets/textures/background.png" id="1_smped"]
-[ext_resource type="Texture2D" uid="uid://d1xglsq6e2hu6" path="res://assets/textures/floor.png" id="2_fvn12"]
+[ext_resource type="PackedScene" uid="uid://dpkd4635vy0ao" path="res://entities/world/ground.tscn" id="2_dsna5"]
 [ext_resource type="PackedScene" uid="uid://dxo4njqjj25rg" path="res://entities/enimies/turret.tscn" id="4_r3ydv"]
 
 [sub_resource type="GDScript" id="GDScript_a5nbh"]
@@ -10,18 +10,31 @@ script/source = "extends Node
 
 func _ready():
 	$Player.set_bullet_container(self)
-	$Turret.set_values($Player, self)
-	$Turret2.set_values($Player, self)
-	$Turret3.set_values($Player, self)
+	$TurretSpawner.spawn_turrets($Player)
 "
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fed84"]
-size = Vector2(1149, 66)
+[sub_resource type="GDScript" id="GDScript_8puwi"]
+script/source = "extends Node
+@export var turret_scene:PackedScene
+
+func spawn_turrets(player):
+	var visible_rect:Rect2 = get_viewport().get_visible_rect()
+	for i in 3:
+		var turret_instance:Turret = turret_scene.instantiate()
+		var turret_pos:Vector2 = Vector2(
+			randf_range(visible_rect.position.x + 30, visible_rect.end.x - 30), 
+			randf_range(visible_rect.position.y + 30, player.global_position.y - 50)
+		)
+		turret_instance.initialize(self, turret_pos, player, self)
+"
 
 [node name="Main" type="Node"]
 script = SubResource("GDScript_a5nbh")
 
-[node name="BackColor" type="TextureRect" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="BackColor" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -29,17 +42,10 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_smped")
 
-[node name="Ground" type="StaticBody2D" parent="."]
-position = Vector2(0, 560)
+[node name="Ground" parent="." instance=ExtResource("2_dsna5")]
 
-[node name="Sprite" type="Sprite2D" parent="Ground"]
-position = Vector2(576, 55)
-scale = Vector2(17.4545, 1)
-texture = ExtResource("2_fvn12")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
-position = Vector2(577.5, 55)
-shape = SubResource("RectangleShape2D_fed84")
+[node name="Ground2" parent="." instance=ExtResource("2_dsna5")]
+position = Vector2(1146, 560)
 
 [node name="Player" parent="." instance=ExtResource("1_ctkeo")]
 position = Vector2(571, 550)
@@ -47,11 +53,6 @@ position = Vector2(571, 550)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -225)
 
-[node name="Turret" parent="." instance=ExtResource("4_r3ydv")]
-position = Vector2(580, 35)
-
-[node name="Turret2" parent="." instance=ExtResource("4_r3ydv")]
-position = Vector2(1115, 35)
-
-[node name="Turret3" parent="." instance=ExtResource("4_r3ydv")]
-position = Vector2(50, 35)
+[node name="TurretSpawner" type="Node" parent="."]
+script = SubResource("GDScript_8puwi")
+turret_scene = ExtResource("4_r3ydv")
