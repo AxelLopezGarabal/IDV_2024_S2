@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 @export var ACCELERATION:float = 20.0
 @export var H_SPEED_LIMIT:float = 600.0
 @export var J_SPEED:float = -500.0

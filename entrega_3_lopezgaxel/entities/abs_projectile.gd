@@ -5,10 +5,11 @@ signal delete_req(projectile)
 var direction:Vector2
 @export var speed = 500
 
-func set_starting_values(star_position:Vector2, dir:Vector2):
-	global_position = star_position
-	self.direction = dir
-	$Timer.autostart = true #tiene que estar seteado en true
+func initialize(container, spawn_position:Vector2, direction:Vector2):
+	container.add_child(self)
+	self.direction = direction
+	global_position = spawn_position
+	$Timer.start()
 
 func _physics_process(delta):
 	position += direction * speed * delta

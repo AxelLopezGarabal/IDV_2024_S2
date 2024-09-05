@@ -1,31 +1,35 @@
-[gd_scene load_steps=7 format=3 uid="uid://bredsbdmat4jr"]
+[gd_scene load_steps=8 format=3 uid="uid://bredsbdmat4jr"]
 
 [ext_resource type="PackedScene" uid="uid://lbjv0daetqgc" path="res://entities/player/player.tscn" id="1_ctkeo"]
 [ext_resource type="Texture2D" uid="uid://bu5k2wh1vtdb" path="res://assets/textures/background.png" id="1_smped"]
 [ext_resource type="PackedScene" uid="uid://dpkd4635vy0ao" path="res://entities/world/ground.tscn" id="2_dsna5"]
 [ext_resource type="PackedScene" uid="uid://dxo4njqjj25rg" path="res://entities/enimies/turret.tscn" id="4_r3ydv"]
+[ext_resource type="PackedScene" uid="uid://dtqmlcburmdrf" path="res://entities/world/cube.tscn" id="5_d82vm"]
 
 [sub_resource type="GDScript" id="GDScript_a5nbh"]
 script/source = "extends Node
 
 func _ready():
 	$Player.set_bullet_container(self)
-	$TurretSpawner.spawn_turrets($Player)
+	$TurretSpawner.spawn_turrets()
 "
 
 [sub_resource type="GDScript" id="GDScript_8puwi"]
 script/source = "extends Node
 @export var turret_scene:PackedScene
 
-func spawn_turrets(player):
+func _ready() -> void:
+	call_deferred(\"initialize\")
+
+func spawn_turrets():
 	var visible_rect:Rect2 = get_viewport().get_visible_rect()
 	for i in 3:
 		var turret_instance:Turret = turret_scene.instantiate()
 		var turret_pos:Vector2 = Vector2(
 			randf_range(visible_rect.position.x + 30, visible_rect.end.x - 30), 
-			randf_range(visible_rect.position.y + 30, player.global_position.y - 50)
+			randf_range(visible_rect.position.y + 30, 50)
 		)
-		turret_instance.initialize(self, turret_pos, player, self)
+		turret_instance.initialize(self, turret_pos, self)
 "
 
 [node name="Main" type="Node"]
@@ -49,6 +53,7 @@ position = Vector2(1146, 560)
 
 [node name="Player" parent="." instance=ExtResource("1_ctkeo")]
 position = Vector2(571, 550)
+J_SPEED = -350.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -225)
@@ -56,3 +61,9 @@ position = Vector2(0, -225)
 [node name="TurretSpawner" type="Node" parent="."]
 script = SubResource("GDScript_8puwi")
 turret_scene = ExtResource("4_r3ydv")
+
+[node name="Cube" parent="." instance=ExtResource("5_d82vm")]
+position = Vector2(270, 449)
+
+[node name="Cube2" parent="." instance=ExtResource("5_d82vm")]
+position = Vector2(267, 282)

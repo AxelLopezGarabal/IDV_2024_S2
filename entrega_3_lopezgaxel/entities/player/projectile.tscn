@@ -5,3 +5,6 @@
 
 [node name="Projectile" instance=ExtResource("1_q4gm6")]
 texture = ExtResource("2_w4ldp")
+
+[node name="Timer" parent="." index="0"]
+autostart = true

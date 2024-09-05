@@ -9,8 +9,11 @@ func _ready() -> void:
 
 func fire():
 	var new_bullet:Projectile = projectile.instantiate()
-	new_bullet.set_starting_values(firePosition.global_position, (firePosition.global_position - global_position).normalized())
-	bullet_container.add_child(new_bullet)
+	new_bullet.initialize(
+		bullet_container, 
+		firePosition.global_position, 
+		global_position.direction_to(firePosition.global_position)
+	)
 	new_bullet.delete_req.connect(_on_projectile_delete_req)
 	
 func _on_projectile_delete_req(projectile):
