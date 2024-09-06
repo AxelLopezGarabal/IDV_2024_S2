@@ -32,6 +32,12 @@ func _on_projectile_delete_req(projectile):
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is Player:
+	if target == null:
 		target = body
 		$Timer.start()
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body == target:
+		target = null
+		$Timer.stop()

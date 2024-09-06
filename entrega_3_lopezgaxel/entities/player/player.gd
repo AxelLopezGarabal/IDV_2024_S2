@@ -4,6 +4,7 @@ class_name Player
 @export var H_SPEED_LIMIT:float = 600.0
 @export var J_SPEED:float = -500.0
 @export var G_Force:float = 5.0
+@export var push_force:float = 300.0
 @export var FRICTION_WEIGHT:float = 0.1
 
 var up:Vector2 = Vector2.UP
@@ -26,13 +27,19 @@ func _process(delta):
 		velocity.y = J_SPEED
 	
 	velocity.y += G_Force
-	move_and_slide()#no requiere parametro
-	#position += velocity * delta
+	move_and_slide()
 	
 	var mouse_pos:Vector2 = get_global_mouse_position()
 	cannon.look_at(mouse_pos)
 	if Input.is_action_just_pressed("Fire"):
 		cannon.fire()
+
+func _physics_process(delta: float) -> void:
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody2D:
+			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
+
 
 func set_bullet_container(container:Node):
 	cannon.bullet_container = container

@@ -48,11 +48,28 @@ texture = ExtResource("1_smped")
 
 [node name="Ground" parent="." instance=ExtResource("2_dsna5")]
 
+[node name="Ground5" parent="." instance=ExtResource("2_dsna5")]
+position = Vector2(0, -284)
+
+[node name="Ground6" parent="." instance=ExtResource("2_dsna5")]
+position = Vector2(1125, -284)
+
+[node name="Ground4" parent="." instance=ExtResource("2_dsna5")]
+rotation = -0.0523599
+
+[node name="Ground3" parent="." instance=ExtResource("2_dsna5")]
+position = Vector2(77, -250)
+rotation = 1.5708
+
+[node name="Ground7" parent="." instance=ExtResource("2_dsna5")]
+position = Vector2(2325, -263)
+rotation = 1.5708
+
 [node name="Ground2" parent="." instance=ExtResource("2_dsna5")]
 position = Vector2(1146, 560)
 
 [node name="Player" parent="." instance=ExtResource("1_ctkeo")]
-position = Vector2(571, 550)
+position = Vector2(577, 490)
 J_SPEED = -350.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -64,6 +81,20 @@ turret_scene = ExtResource("4_r3ydv")
 
 [node name="Cube" parent="." instance=ExtResource("5_d82vm")]
 position = Vector2(270, 449)
+mass = 0.6
+
+[node name="Cube4" parent="." instance=ExtResource("5_d82vm")]
+position = Vector2(1126, 426)
+mass = 0.6
+
+[node name="Cube5" parent="." instance=ExtResource("5_d82vm")]
+position = Vector2(1126, 480)
+mass = 0.6
+
+[node name="Cube3" parent="." instance=ExtResource("5_d82vm")]
+position = Vector2(1124, 373)
+mass = 0.6
 
 [node name="Cube2" parent="." instance=ExtResource("5_d82vm")]
 position = Vector2(267, 282)
+mass = 0.5
