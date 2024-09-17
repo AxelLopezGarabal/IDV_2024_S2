@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://bi7pgf0sbpkdg"]
+
+[ext_resource type="PackedScene" path="res://src/entities/Projectile.tscn" id="1"]
+
+[sub_resource type="Animation" id="1"]
+resource_name = "fire_loop"
+
+[sub_resource type="Animation" id="2"]
+resource_name = "fire_start"
+
+[sub_resource type="Animation" id="3"]
+resource_name = "hit"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_remove"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mq6vp"]
+_data = {
+"fire_loop": SubResource("1"),
+"fire_start": SubResource("2"),
+"hit": SubResource("3")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ojfe7"]
+radius = 8.0
+
+[node name="PlayerProjectile" instance=ExtResource("1")]
+
+[node name="ProjectileAnimations" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_mq6vp")
+}
+
+[node name="Hitbox" parent="." index="2"]
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_ojfe7")
