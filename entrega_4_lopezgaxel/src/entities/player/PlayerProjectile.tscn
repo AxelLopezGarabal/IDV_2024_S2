@@ -1,12 +1,28 @@
-[gd_scene load_steps=7 format=3 uid="uid://bi7pgf0sbpkdg"]
+[gd_scene load_steps=9 format=3 uid="uid://bi7pgf0sbpkdg"]
 
 [ext_resource type="PackedScene" path="res://src/entities/Projectile.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://rhok42fhn6wb" path="res://assets/textures/fx/bolt/bolt1-1.png.png" id="2_kda2b"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "fire_loop"
 
 [sub_resource type="Animation" id="2"]
 resource_name = "fire_start"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
+}
 
 [sub_resource type="Animation" id="3"]
 resource_name = "hit"
@@ -25,15 +41,31 @@ tracks/0/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_ooouc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mq6vp"]
 _data = {
+"RESET": SubResource("Animation_ooouc"),
 "fire_loop": SubResource("1"),
 "fire_start": SubResource("2"),
 "hit": SubResource("3")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ojfe7"]
-radius = 8.0
+radius = 6.0
 
 [node name="PlayerProjectile" instance=ExtResource("1")]
 
@@ -47,3 +79,13 @@ collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource("CircleShape2D_ojfe7")
+
+[node name="Node2D" type="Node2D" parent="." index="3"]
+
+[node name="Body" type="Sprite2D" parent="Node2D" index="0"]
+position = Vector2(7, 0)
+rotation = 3.14159
+scale = Vector2(0.551587, 0.59375)
+texture = ExtResource("2_kda2b")
+hframes = 4
+frame = 1

@@ -8,7 +8,7 @@ extends Node2D
 @onready var hitbox: Area2D = $Hitbox
 @onready var projectile_animations: AnimationPlayer = $ProjectileAnimations
 
-@export var VELOCITY: float = 800.0
+@export var VELOCITY: float = 10.0
 
 var direction: Vector2
 
