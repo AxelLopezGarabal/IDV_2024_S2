@@ -137,4 +137,4 @@ rotation = 1.5708
 texture = ExtResource("5_xr6ma")
 
 [node name="WeaponTip" type="Marker2D" parent="WeaponContainer/Weapon"]
-position = Vector2(15, 0)
+position = Vector2(8, 1)
