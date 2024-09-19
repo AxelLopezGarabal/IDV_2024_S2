@@ -16,7 +16,7 @@ const FLOOR_NORMAL: Vector2 = Vector2.UP  # Igual a Vector2(0, -1)
 const SNAP_DIRECTION: Vector2 = Vector2.UP
 const SNAP_LENGHT: float = 32.0
 const SLOPE_THRESHOLD: float = deg_to_rad(46)
-
+@export var push_force:float = 550.0
 @export var ACCELERATION: float = 60.0
 @export var H_SPEED_LIMIT: float = 600.0
 @export var jump_speed: int = 500
@@ -89,7 +89,10 @@ func _physics_process(delta: float) -> void:
 	set_floor_max_angle(SLOPE_THRESHOLD)
 	move_and_slide()
 	vel = vel
-
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody2D:
+			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
 
 func notify_hit() -> void:
 	print("I'm player and imma die")
