@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://yd28hdspdnq4"]
+
+[ext_resource type="PackedScene" uid="uid://c8ymfnar0uucx" path="res://src/entities/player/player.tscn" id="1_lg103"]
+[ext_resource type="PackedScene" uid="uid://dbvbd2cuh1ofi" path="res://src/environment/Platform.tscn" id="1_nfj2m"]
+[ext_resource type="PackedScene" uid="uid://iu0isviutlsd" path="res://src/environment/Floor.tscn" id="2_i6bqr"]
+[ext_resource type="PackedScene" uid="uid://b70i43bxg7k3g" path="res://src/environment/Spring.tscn" id="3_fmnmp"]
+[ext_resource type="PackedScene" uid="uid://015j3x8f3od3" path="res://src/environment/spike.tscn" id="4_eb30t"]
+
+[node name="Level0" type="Node2D"]
+
+[node name="environment" type="Node2D" parent="."]
+
+[node name="ground" type="Node2D" parent="environment"]
+
+[node name="Floor" parent="environment/ground" instance=ExtResource("2_i6bqr")]
+position = Vector2(35, 660)
+
+[node name="Floor2" parent="environment/ground" instance=ExtResource("2_i6bqr")]
+position = Vector2(1576, 615)
+
+[node name="Platform" parent="environment/ground" instance=ExtResource("1_nfj2m")]
+position = Vector2(758, 597)
+
+[node name="Platform2" parent="environment/ground" instance=ExtResource("1_nfj2m")]
+position = Vector2(1007, 588)
+
+[node name="Platform3" parent="environment/ground" instance=ExtResource("1_nfj2m")]
+position = Vector2(1226, 531)
+
+[node name="spring" parent="environment/ground" instance=ExtResource("3_fmnmp")]
+position = Vector2(1488, 785)
+
+[node name="Spike" parent="environment/ground" instance=ExtResource("4_eb30t")]
+position = Vector2(772, 930)
+
+[node name="Spike2" parent="environment/ground" instance=ExtResource("4_eb30t")]
+position = Vector2(1032, 930)
+
+[node name="Spike3" parent="environment/ground" instance=ExtResource("4_eb30t")]
+position = Vector2(1295, 930)
+
+[node name="entities" type="Node2D" parent="environment"]
+position = Vector2(-4, 11)
+
+[node name="player" parent="environment/entities" instance=ExtResource("1_lg103")]
+position = Vector2(252, 484)
