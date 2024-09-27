@@ -293,6 +293,7 @@ rotation = -0.601429
 position = Vector2(152.506, 477.622)
 
 [node name="Camera3D" type="Camera2D" parent="Environment/Entities/Player"]
+position = Vector2(3.494, -31.622)
 
 [node name="TurretsSpawner" type="Marker2D" parent="Environment/Entities"]
 position = Vector2(1269.72, 24.3184)
@@ -335,10 +336,12 @@ tile_set = SubResource("TileSet_x375w")
 [node name="Background" type="ParallaxBackground" parent="CanvasLayer"]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="CanvasLayer/Background"]
+z_index = -20
 motion_scale = Vector2(0, 0)
-motion_mirroring = Vector2(288, 165)
+motion_mirroring = Vector2(288, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Background/ParallaxLayer"]
-position = Vector2(145, 83)
-scale = Vector2(1, 1.02469)
+z_index = -10
+position = Vector2(146.5, 140)
+scale = Vector2(1.04514, 1.77778)
 texture = ExtResource("2_etuqv")

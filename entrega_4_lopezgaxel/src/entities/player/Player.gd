@@ -36,6 +36,7 @@ func _ready() -> void:
 	initialize()
 
 
+@warning_ignore("shadowed_variable")
 func initialize(projectile_container: Node = get_parent()) -> void:
 	self.projectile_container = projectile_container
 	weapon.projectile_container = projectile_container
@@ -78,6 +79,7 @@ func _process_input() -> void:
 		_play_animation("idle")
 
 
+@warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
 	_process_input()
 	vel.y += gravity
@@ -95,6 +97,8 @@ func _physics_process(delta: float) -> void:
 			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
 
 func notify_hit() -> void:
+	_play_animation("death")
+	wait(0.9)
 	print("I'm player and imma die")
 	call_deferred("_remove")
 
@@ -110,3 +114,6 @@ func _remove() -> void:
 func _play_animation(animation: String) -> void:
 	if body_animations.has_animation(animation):
 		body_animations.play(animation)
+
+func wait(seconds: float) -> void:
+	await get_tree().create_timer(seconds).timeout
