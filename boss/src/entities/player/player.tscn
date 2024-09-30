@@ -1,14 +1,51 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8ymfnar0uucx"]
+[gd_scene load_steps=11 format=3 uid="uid://c8ymfnar0uucx"]
 
 [ext_resource type="Texture2D" uid="uid://cd5idsck5ccpb" path="res://assets/textures/player/roundPlayer.png" id="1_7qf64"]
 [ext_resource type="Script" path="res://src/entities/player/player.gd" id="1_y6uat"]
+[ext_resource type="Script" path="res://src/entities/player/PlayerStateMachine.gd" id="2_xkhux"]
+[ext_resource type="Script" path="res://src/entities/player/states/IdleState.gd" id="3_7nskn"]
+[ext_resource type="Script" path="res://src/entities/player/states/WalkState.gd" id="4_uk8vk"]
+[ext_resource type="Script" path="res://src/entities/player/states/JumpState.gd" id="5_c3qpy"]
+[ext_resource type="Script" path="res://src/entities/player/SprintState.gd" id="5_lg5ls"]
+[ext_resource type="Script" path="res://src/entities/player/states/DeadState.gd" id="6_h3oda"]
+[ext_resource type="Script" path="res://src/entities/player/HiJumpState.gd" id="6_tpc0x"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i6liw"]
-radius = 32.0
+radius = 29.0
 height = 64.0
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_y6uat")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_xkhux")
+character_path = NodePath("..")
+START_STATE = NodePath("Idle")
+STATES_LIST = [NodePath("Idle"), NodePath("Walk"), NodePath("Jump"), NodePath("HiJump"), NodePath("Sprint"), NodePath("Dead")]
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_7nskn")
+state_id = "idle"
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource("4_uk8vk")
+state_id = "walk"
+
+[node name="Sprint" type="Node" parent="StateMachine"]
+script = ExtResource("5_lg5ls")
+state_id = "sprint"
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource("5_c3qpy")
+state_id = "jump"
+
+[node name="HiJump" type="Node" parent="StateMachine"]
+script = ExtResource("6_tpc0x")
+state_id = "hijump"
+
+[node name="Dead" type="Node" parent="StateMachine"]
+script = ExtResource("6_h3oda")
+state_id = "dead"
 
 [node name="pivot" type="Node2D" parent="."]
 
@@ -16,8 +53,19 @@ script = ExtResource("1_y6uat")
 texture = ExtResource("1_7qf64")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_i6liw")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(1.25, 1.25)
+
+[node name="FloorRaycasts" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="FloorRaycasts"]
+
+[node name="RayCast2D4" type="RayCast2D" parent="FloorRaycasts"]
+position = Vector2(4, 0)
+
+[node name="RayCast2D5" type="RayCast2D" parent="FloorRaycasts"]
+position = Vector2(-4, 0)
+
+[connection signal="hit" from="." to="StateMachine" method="notify_hit"]

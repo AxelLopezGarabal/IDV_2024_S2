@@ -18,6 +18,15 @@ position = Vector2(35, 660)
 [node name="Floor2" parent="environment/ground" instance=ExtResource("2_i6bqr")]
 position = Vector2(1576, 615)
 
+[node name="Floor3" parent="environment/ground" instance=ExtResource("2_i6bqr")]
+position = Vector2(2235, 615)
+
+[node name="Floor4" parent="environment/ground" instance=ExtResource("2_i6bqr")]
+position = Vector2(2892, 615)
+
+[node name="Floor5" parent="environment/ground" instance=ExtResource("2_i6bqr")]
+position = Vector2(3549, 615)
+
 [node name="Platform" parent="environment/ground" instance=ExtResource("1_nfj2m")]
 position = Vector2(758, 597)
 
@@ -27,8 +36,17 @@ position = Vector2(1007, 588)
 [node name="Platform3" parent="environment/ground" instance=ExtResource("1_nfj2m")]
 position = Vector2(1226, 531)
 
+[node name="Platform4" parent="environment/ground" instance=ExtResource("1_nfj2m")]
+position = Vector2(2253, 433)
+
+[node name="Platform5" parent="environment/ground" instance=ExtResource("1_nfj2m")]
+position = Vector2(2907, 441)
+
+[node name="Platform6" parent="environment/ground" instance=ExtResource("1_nfj2m")]
+position = Vector2(3572, 441)
+
 [node name="spring" parent="environment/ground" instance=ExtResource("3_fmnmp")]
-position = Vector2(1488, 785)
+position = Vector2(1488, 778)
 
 [node name="Spike" parent="environment/ground" instance=ExtResource("4_eb30t")]
 position = Vector2(772, 930)
@@ -43,4 +61,4 @@ position = Vector2(1295, 930)
 position = Vector2(-4, 11)
 
 [node name="player" parent="environment/entities" instance=ExtResource("1_lg103")]
-position = Vector2(252, 484)
+position = Vector2(245, 584)
