@@ -97,5 +97,6 @@ func notify_hit(amount: int = 1) -> void:
 func _play_animation(name: String) -> void:
 	pass
 
-func sendFlying(force:int) -> void:
-	velocity.y -= JUMP_VELOCITY * force
+func sendFlying(force_x:int, force_y:int) -> void:
+	velocity.x =velocity.x + (SPEED) * force_x
+	velocity.y -= JUMP_VELOCITY * force_y

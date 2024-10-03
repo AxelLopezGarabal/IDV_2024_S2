@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://yd28hdspdnq4"]
+[gd_scene load_steps=7 format=3 uid="uid://yd28hdspdnq4"]
 
 [ext_resource type="PackedScene" uid="uid://c8ymfnar0uucx" path="res://src/entities/player/player.tscn" id="1_lg103"]
 [ext_resource type="PackedScene" uid="uid://dbvbd2cuh1ofi" path="res://src/environment/Platform.tscn" id="1_nfj2m"]
 [ext_resource type="PackedScene" uid="uid://iu0isviutlsd" path="res://src/environment/Floor.tscn" id="2_i6bqr"]
 [ext_resource type="PackedScene" uid="uid://b70i43bxg7k3g" path="res://src/environment/Spring.tscn" id="3_fmnmp"]
 [ext_resource type="PackedScene" uid="uid://015j3x8f3od3" path="res://src/environment/spike.tscn" id="4_eb30t"]
+[ext_resource type="PackedScene" uid="uid://d16bnkupp6phg" path="res://src/environment/wall.tscn" id="5_oxsow"]
 
 [node name="Level0" type="Node2D"]
 
@@ -27,6 +28,9 @@ position = Vector2(2892, 615)
 [node name="Floor5" parent="environment/ground" instance=ExtResource("2_i6bqr")]
 position = Vector2(3549, 615)
 
+[node name="Floor6" parent="environment/ground" instance=ExtResource("2_i6bqr")]
+position = Vector2(4205, 258)
+
 [node name="Platform" parent="environment/ground" instance=ExtResource("1_nfj2m")]
 position = Vector2(758, 597)
 
@@ -48,6 +52,18 @@ position = Vector2(3572, 441)
 [node name="spring" parent="environment/ground" instance=ExtResource("3_fmnmp")]
 position = Vector2(1488, 778)
 
+[node name="spring2" parent="environment/ground" instance=ExtResource("3_fmnmp")]
+position = Vector2(4067, 543)
+rotation = -0.628319
+force_x = -7
+force_y = 2
+
+[node name="spring3" parent="environment/ground" instance=ExtResource("3_fmnmp")]
+position = Vector2(3713, 358)
+rotation = 0.872665
+force_x = 10
+force_y = 1
+
 [node name="Spike" parent="environment/ground" instance=ExtResource("4_eb30t")]
 position = Vector2(772, 930)
 
@@ -57,8 +73,17 @@ position = Vector2(1032, 930)
 [node name="Spike3" parent="environment/ground" instance=ExtResource("4_eb30t")]
 position = Vector2(1295, 930)
 
+[node name="Wall" parent="environment/ground" instance=ExtResource("5_oxsow")]
+position = Vector2(-16, 278)
+
+[node name="Wall2" parent="environment/ground" instance=ExtResource("5_oxsow")]
+position = Vector2(4141, 241)
+
+[node name="Wall3" parent="environment/ground" instance=ExtResource("5_oxsow")]
+position = Vector2(3644, 100)
+
 [node name="entities" type="Node2D" parent="environment"]
-position = Vector2(-4, 11)
+position = Vector2(92, -13)
 
 [node name="player" parent="environment/entities" instance=ExtResource("1_lg103")]
 position = Vector2(245, 584)
