@@ -36,7 +36,7 @@ var _active: bool = false:
 func _ready() -> void:
 	set_active(false)
 	call_deferred("_initialize")
-	_initialize()
+	#_initialize()
 
 func _initialize() -> void:
 	# Se mapean los estados con sus ids correspondientes (sin ids repetidos)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://yd28hdspdnq4"]
+[gd_scene load_steps=8 format=3 uid="uid://yd28hdspdnq4"]
 
 [ext_resource type="PackedScene" uid="uid://c8ymfnar0uucx" path="res://src/entities/player/player.tscn" id="1_lg103"]
 [ext_resource type="PackedScene" uid="uid://dbvbd2cuh1ofi" path="res://src/environment/Platform.tscn" id="1_nfj2m"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b70i43bxg7k3g" path="res://src/environment/Spring.tscn" id="3_fmnmp"]
 [ext_resource type="PackedScene" uid="uid://015j3x8f3od3" path="res://src/environment/spike.tscn" id="4_eb30t"]
 [ext_resource type="PackedScene" uid="uid://d16bnkupp6phg" path="res://src/environment/wall.tscn" id="5_oxsow"]
+[ext_resource type="PackedScene" uid="uid://da6wju5yul16d" path="res://src/entities/enemy/enemy.tscn" id="7_f2mlq"]
 
 [node name="Level0" type="Node2D"]
 
@@ -53,16 +54,16 @@ position = Vector2(3572, 441)
 position = Vector2(1488, 778)
 
 [node name="spring2" parent="environment/ground" instance=ExtResource("3_fmnmp")]
-position = Vector2(4067, 543)
-rotation = -0.628319
-force_x = -7
-force_y = 2
+position = Vector2(4090, 552)
+rotation = -0.767945
+force_x = -9.0
+force_y = 1.2
 
 [node name="spring3" parent="environment/ground" instance=ExtResource("3_fmnmp")]
-position = Vector2(3713, 358)
-rotation = 0.872665
-force_x = 10
-force_y = 1
+position = Vector2(3696, 389)
+rotation = 0.994838
+force_x = 12.0
+force_y = 1.5
 
 [node name="Spike" parent="environment/ground" instance=ExtResource("4_eb30t")]
 position = Vector2(772, 930)
@@ -83,7 +84,13 @@ position = Vector2(4141, 241)
 position = Vector2(3644, 100)
 
 [node name="entities" type="Node2D" parent="environment"]
-position = Vector2(92, -13)
+position = Vector2(1, 1)
 
 [node name="player" parent="environment/entities" instance=ExtResource("1_lg103")]
-position = Vector2(245, 584)
+position = Vector2(3204, 479)
+
+[node name="enemy" parent="environment/entities" instance=ExtResource("7_f2mlq")]
+position = Vector2(450, 433)
+
+[node name="enemy2" parent="environment/entities" instance=ExtResource("7_f2mlq")]
+position = Vector2(138, 442)
